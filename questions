@@ -1,9 +1,14 @@
 1. What is the DOM?
+    Document Object Model
 
 2. What is an event?
+    an action of something happening on or with a webpage such as a mouse click or a mouse over and etc.
 
 3. What is an event listener?
+    waits for an event to occur
 
 4. Why would we convert a NodeList into an Array?
+    NodeList are simliar to arrays. but dont support many of the methods provided by an array. so we convert NodeList into an array to utilize the methods by the converted array.
 
 5. What is a component?
+    components are independent and resuable. serve the simliar purpose as a javascript function but works in isolation and returns HTML using a render function.
