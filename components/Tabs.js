@@ -13,27 +13,46 @@
 const base = axios
   .get("https://lambda-times-api.herokuapp.com/topics")
   .then((resp) => {
-    console.log(resp.base);
+    console.log(resp.data);
 
     return resp;
   });
 
-const lambdaTopics = function (resp) {
+// const lambdaTopics = function (data) {
+
+//     tabs = document.createElement('div')
+//     tabs.classList.add('tab')
+//     tabs.textContent = `${data.topics}`
+
+// return tabs
+// }
+
+// const titles = document.querySelectorAll(".title");
+// const body = document.querySelector("body");
+// console.log(titles);
+// console.log(body);
+
+// body.appendChild(lambdaTopics(base));
+
+const lambdaTopics = function (data) {
   const tabs = document.querySelector(".tabs");
   const topicsbar = document.querySelector(".topics");
-  const titleSpan = document.querySelector(".title");
 
   topics = document.createElement("div");
   topics.classList.add("tab");
-  topics.textContent = `${resp}`;
+  topics.textContent = `${data.topics}`;
 
-    titleSpan.appendChild(topics)
+  topicsbar.appendChild(topics);
   return tabs;
 };
+
+// topics.forEach((item) => {
+//   body.appendChild(lambdaTopics("topics"));
+// });
 
 const titles = document.querySelectorAll(".title");
 const body = document.querySelector("body");
 
-body.appendChild(lambdaTopics(base));
+body.appendChild(lambdaTopics("topics"));
 console.log(titles);
 console.log(body);
