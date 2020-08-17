@@ -18,7 +18,7 @@ function Header() {
   header.classList.add("header");
 
   const date = document.createElement("span");
-  header.classList.add("date");
+  date.classList.add("date");
   date.textContent = `MARCH 28, 2020`;
 
   const h1Header = document.createElement("h1");
