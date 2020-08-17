@@ -11,12 +11,12 @@
 // NOTE: you do _not_ need to install axios as it's included in the HTML via script element
 
 const base = axios
-  .get("https://lambda-times-api.herokuapp.com/topics")
-  .then((resp) => {
-    console.log(resp.data);
+    .get("https://lambda-times-api.herokuapp.com/topics");
+//   .then((resp) => {
+//     console.log(resp.data);
 
-    return resp;
-  });
+//     return resp;
+//   });
 
 // const lambdaTopics = function (data) {
 
@@ -33,26 +33,26 @@ const base = axios
 // console.log(body);
 
 // body.appendChild(lambdaTopics(base));
-
-const lambdaTopics = function (data) {
+console.log(base)
+const lambdaTopics = (base) => {
   const tabs = document.querySelector(".tabs");
   const topicsbar = document.querySelector(".topics");
 
   topics = document.createElement("div");
   topics.classList.add("tab");
-  topics.textContent = `${data.topics}`;
+    topics.textContent = `${base.topics}`;
 
   topicsbar.appendChild(topics);
   return tabs;
 };
 
-// topics.forEach((item) => {
-//   body.appendChild(lambdaTopics("topics"));
+// data.forEach((item) => {
+//   body.appendChild(lambdaTopics(item));
 // });
 
 const titles = document.querySelectorAll(".title");
 const body = document.querySelector("body");
 
-body.appendChild(lambdaTopics("topics"));
+body.appendChild(lambdaTopics('topics'));
 console.log(titles);
 console.log(body);
