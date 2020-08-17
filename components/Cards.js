@@ -20,10 +20,46 @@
 // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
-const articles = axios
-  .get("https://lambda-times-api.herokuapp.com/articles")
-  .then((resp) => {
-    console.log(resp.base);
+const articles = axios.get("https://lambda-times-api.herokuapp.com/articles");
+// .then((resp) => {
+//   console.log(resp.base);
 
-    return resp;
-  });
+//   return resp;
+// });
+console.log(articles)
+
+const createCards = () => {
+
+
+  const newCard = document.createElement("div");
+  newCard.classList.add("card");
+
+  const headline = document.createElement("div");
+  headline.classList.add("headline");
+  headline.textContent = "Headline";
+
+  const author = document.createElement("div");
+  author.classList.add("author");
+
+  const imgContainer = document.createElement("div");
+  imgContainer.classList.add("img-container");
+  imgContainer.textContent = "image here";
+
+  const authorsName = document.createElement("span");
+  authorsName.textContent = "Authors Name here";
+
+  cardsContainer.appendChild(newCard)
+  newCard.appendChild(headline)
+  newCard.appendChild(author)
+  author.appendChild(imgContainer)
+  author.appendChild(authorsName)
+
+  return cardsContainer
+};
+
+const cardsContainer = document.querySelector('.cards-container')
+const body = document.querySelector("body");
+
+body.appendChild(createCards("newCard"));
+
+console.log(body);
