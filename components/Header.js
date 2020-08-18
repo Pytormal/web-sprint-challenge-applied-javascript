@@ -12,7 +12,7 @@
 // and append it to the DOM inside the div.header-container
 
 function Header() {
-    const heading = document.querySelector(".header");
+  const topHeader = document.querySelector(".header-container");
 
   const header = document.createElement("div");
   header.classList.add("header");
@@ -33,12 +33,7 @@ function Header() {
   header.appendChild(h1Header);
   header.appendChild(temperature);
 
-  return heading;
 }
 
-const topHeader = document.querySelector(".header-container");
 const body = document.querySelector("body");
-console.log(topHeader);
-
-body.appendChild(Header("header-container"));
-console.log(body);
+body.appendChild(Header("header"));

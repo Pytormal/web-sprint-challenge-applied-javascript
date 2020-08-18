@@ -10,47 +10,29 @@
 //
 // NOTE: you do _not_ need to install axios as it's included in the HTML via script element
 
-const base = axios.get("https://lambda-times-api.herokuapp.com/topics");
-//   .then((resp) => {
-//     console.log(resp.data);
+axios
+  .get("https://lambda-times-api.herokuapp.com/topics")
+  .then((resp) => {
+    Object.values(resp.data.topics).foreach((item) => {
+      item.forEach((articles) => {
+        body.appendChild(lambdaTopics(articles));
+      });
+    });
+    console.log(resp);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-//     return resp;
-//   });
-
-// const lambdaTopics = function (data) {
-
-//     tabs = document.createElement('div')
-//     tabs.classList.add('tab')
-//     tabs.textContent = `${data.topics}`
-
-// return tabs
-// }
-
-// const titles = document.querySelectorAll(".title");
-// const body = document.querySelector("body");
-// console.log(titles);
-// console.log(body);
-
-// body.appendChild(lambdaTopics(base));
-console.log(base);
-const lambdaTopics = (base) => {
-  const tabs = document.querySelector(".tabs");
+const lambdaTopics = () => {
   const topicsbar = document.querySelector(".topics");
 
   topics = document.createElement("div");
   topics.classList.add("tab");
-  topics.textContent = `${base.topics}`;
+  topics.textContent = "tell";
 
   topicsbar.appendChild(topics);
-  return tabs;
 };
 
-// data.forEach((item) => {
-//   body.appendChild(lambdaTopics(item));
-// });
-
 const body = document.querySelector("body");
-
 body.appendChild(lambdaTopics("topics"));
-
-console.log(body);
