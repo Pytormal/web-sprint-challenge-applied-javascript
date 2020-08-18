@@ -20,38 +20,40 @@
 // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
-axios
-  .get("https://lambda-times-api.herokuapp.com/articles")
-  .then((resp) => {
-    Object.values(resp.data.topics).foreach((item) => {
-      item.forEach((articles) => {
-        body.appendChild(createCards(articles));
+
+const cardContainer = document.querySelector(".cards-container");
+
+
+axios.get("https://lambda-times-api.herokuapp.com/articles")
+  .then((response) => {
+    Object.values(response.data.articles).forEach((item) => {
+      item.forEach((article) => {
+        cardContainer.append(createCards(article));
       });
     });
+    console.log(response);
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => console.log(err));
 
-const createCards = () => {
-  const cardContainer = document.querySelector(".cards-container");
-
+const createCards = (object) => {
   const newCard = document.createElement("div");
   newCard.classList.add("card");
 
   const headline = document.createElement("div");
   headline.classList.add("headline");
-  headline.textContent = "Headline";
+  headline.textContent = object.headline;
 
   const author = document.createElement("div");
   author.classList.add("author");
 
   const imgContainer = document.createElement("div");
   imgContainer.classList.add("img-container");
-  imgContainer.textContent = "image here";
+
+  const img = document.createElement('img')
+  img.src = object.authorPhoto;
 
   const authorsName = document.createElement("span");
-  authorsName.textContent = "Authors Name here";
+  authorsName.textContent = `by: ${object.authorName}`;
 
   // eventlistener
   const cardClick = document.querySelector(".card");
@@ -59,14 +61,10 @@ const createCards = () => {
     console.log(headline);
   });
 
-  cardContainer.appendChild(newCard);
   newCard.appendChild(headline);
   newCard.appendChild(author);
   author.appendChild(imgContainer);
   author.appendChild(authorsName);
-
-  return cardContainer;
+imgContainer.appendChild(img)
+  return newCard;
 };
-
-const body = document.querySelector("body");
-body.appendChild(createCards("newCard"));
